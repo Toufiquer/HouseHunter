@@ -5,6 +5,7 @@ import Divider from "../../components/Divider/Divider";
 import Footer from "../../components/Footer/Footer";
 
 import AOS from "aos";
+import Navbar from "../../components/Navbar/Navbar";
 const Main = ({ children }) => {
   //useEffect
   useEffect(() => {
@@ -13,6 +14,7 @@ const Main = ({ children }) => {
   }, []);
   return (
     <>
+      <Navbar />
       {children}
       <Divider /> {/** Divider */}
       <Footer />
