@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../layout/Main/Main";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = React.useState(false);
+
+  const [currentUser, setCurrentUser] = useContext(AuthContext);
   const auth = localStorage.getItem("userData");
   useEffect(() => {
     if (auth) {
       const parse = JSON.parse(auth);
-      console.log(parse);
+
       if (parse?.data?.email) {
-        setIsAuth((pre) => !pre);
+        setIsAuth(true);
       }
     }
-  }, [auth]);
+    if (currentUser.token) {
+      setIsAuth(true);
+    }
+  }, [auth, currentUser]);
   const menuItems = (
     <>
       <li>
@@ -94,7 +100,8 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={() => {
-                        setIsAuth((pre) => !pre);
+                        setIsAuth(false);
+                        setCurrentUser(false);
                         localStorage.setItem("userData", JSON.stringify({}));
                       }}
                     >

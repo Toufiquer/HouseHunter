@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAddUserMutation } from "../../redux/features/users/usersApi";
 import Loading from "../../components/Loading/Loading";
 import DisplayCenter from "../../components/DisplayCenter/DisplayCenter";
+import { AuthContext } from "../../layout/Main/Main";
 
 const Registration = () => {
-  const [addUser, { isSuccess, isLoading, isError, error, data }] =
+  const [currentUser, setCurrentUser] = useContext(AuthContext);
+  // console.log(currentUser);
+  const [addUser, { isSuccess, isLoading, isError, data }] =
     useAddUserMutation();
-  console.log(isSuccess, error);
   const options = [
     { value: "house_Owner", text: "House Owner" },
     { value: "house_Renter", text: "House Renter" },
@@ -58,7 +60,11 @@ const Registration = () => {
       localStorage.setItem("userData", JSON.stringify({}));
       content = <DisplayCenter>{data.message}</DisplayCenter>;
     } else {
-      localStorage.setItem("userData", JSON.stringify(data));
+      const localData = {
+        token: data.token,
+      };
+      setCurrentUser(localData);
+      localStorage.setItem("userData", JSON.stringify(localData));
       return <Navigate to="/" />;
     }
   } else {
