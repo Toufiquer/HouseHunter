@@ -65,7 +65,7 @@ const Registration = () => {
       };
       setCurrentUser(localData);
       localStorage.setItem("userData", JSON.stringify(localData));
-      return <Navigate to="/" />;
+      return <Navigate to="/dashboard" />;
     }
   } else {
     content = (

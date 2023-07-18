@@ -7,7 +7,9 @@ import TableView from "./TableView";
 const HouseOwnerDashboard = () => {
   const menu = (
     <>
-      <Link className="hover:underline mx-2">Item 1</Link>
+      <Link to="addHouse" className="hover:underline mx-2">
+        Add House
+      </Link>
       <Link className="hover:underline mx-2">Item 2</Link>
       <Link className="hover:underline mx-2">Item 3</Link>
     </>
