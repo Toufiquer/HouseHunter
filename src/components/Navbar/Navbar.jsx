@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = React.useState(false);
-  
+  const auth = localStorage.getItem("userData");
+  useEffect(() => {
+    if (auth) {
+      const parse = JSON.parse(auth);
+      console.log(parse);
+      if (parse?.data?.email) {
+        setIsAuth((pre) => !pre);
+      }
+    }
+  }, [auth]);
   const menuItems = (
     <>
       <li>
@@ -83,7 +92,14 @@ const Navbar = () => {
                     <a>Settings</a>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <button
+                      onClick={() => {
+                        setIsAuth((pre) => !pre);
+                        localStorage.setItem("userData", JSON.stringify({}));
+                      }}
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </div>

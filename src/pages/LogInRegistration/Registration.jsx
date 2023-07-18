@@ -54,10 +54,11 @@ const Registration = () => {
   } else if (!isLoading && isError) {
     content = <DisplayCenter>Ops! Some thing went wrong</DisplayCenter>;
   } else if (isSuccess) {
-    console.log(data);
     if (data.isError) {
+      localStorage.setItem("userData", JSON.stringify({}));
       content = <DisplayCenter>{data.message}</DisplayCenter>;
     } else {
+      localStorage.setItem("userData", JSON.stringify(data));
       return <Navigate to="/" />;
     }
   } else {
