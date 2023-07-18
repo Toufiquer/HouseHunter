@@ -78,122 +78,125 @@ const AddHouse = () => {
     content = <DisplayCenter>Ops! Some thing went wrong</DisplayCenter>;
   } else {
     content = (
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-        <label className="label">
-          <span className="label-text">What is your Email?</span>
-        </label>
-        <input
-          type="email"
-          placeholder="Email"
-          ref={email}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">What is your Password?</span>
-        </label>
-        <input
-          type="password"
-          ref={password}
-          placeholder="Password"
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Address</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Address"
-          ref={address}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">City</span>
-        </label>
-        <input
-          type="text"
-          placeholder="City"
-          ref={city}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Bedrooms</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Bedrooms"
-          ref={bedrooms}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Bathrooms</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Bathrooms"
-          ref={bathrooms}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Room Size</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Room Size"
-          ref={roomSize}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Picture</span>
-        </label>
-        <input
-          type="file"
-          ref={picture}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Availability Date</span>
-        </label>
-        <input
-          type="date"
-          placeholder="Availability Date"
-          ref={availabilityDate}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Rent Per Month</span>
-        </label>
-        <input
-          type="number"
-          placeholder="Rent Per Month"
-          ref={rentPerMonth}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Phone Number</span>
-        </label>
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          ref={phoneNumber}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <label className="label">
-          <span className="label-text">Description</span>
-        </label>
-        <textarea
-          placeholder="Description"
-          ref={description}
-          className="input input-bordered input-primary w-[400px]"
-        />
-        <input
-          type="submit"
-          value="Submit"
-          className="btn btn-outline btn-primary input input-bordered input-primary w-[400px]"
-        />
-      </form>
+      <div className="flex items-center justify-center mt-4">
+        {" "}
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+          <label className="label">
+            <span className="label-text">What is your Email?</span>
+          </label>
+          <input
+            type="email"
+            placeholder="Email"
+            ref={email}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">What is your Password?</span>
+          </label>
+          <input
+            type="password"
+            ref={password}
+            placeholder="Password"
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Address</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Address"
+            ref={address}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">City</span>
+          </label>
+          <input
+            type="text"
+            placeholder="City"
+            ref={city}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Bedrooms</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Bedrooms"
+            ref={bedrooms}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Bathrooms</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Bathrooms"
+            ref={bathrooms}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Room Size</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Room Size"
+            ref={roomSize}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Picture</span>
+          </label>
+          <input
+            type="file"
+            ref={picture}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Availability Date</span>
+          </label>
+          <input
+            type="date"
+            placeholder="Availability Date"
+            ref={availabilityDate}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Rent Per Month</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Rent Per Month"
+            ref={rentPerMonth}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Phone Number</span>
+          </label>
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            ref={phoneNumber}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <textarea
+            placeholder="Description"
+            ref={description}
+            className="input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+          <input
+            type="submit"
+            value="Submit"
+            className="btn btn-outline btn-primary input input-bordered input-primary w-[400px] md:w-[800px]"
+          />
+        </form>
+      </div>
     );
   }
-  return content;
+  return <div className="container mx-auto w-full min-h-screen">{content}</div>;
 };
 
 export default AddHouse;

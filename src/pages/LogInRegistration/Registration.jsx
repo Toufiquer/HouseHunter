@@ -43,8 +43,9 @@ const Registration = () => {
         phone: phone.current.value,
         email: email.current.value,
         password: password.current.value,
-        role,
+        userRole: role,
       };
+      console.log(data);
       addUser(data);
     }
   };
@@ -62,6 +63,8 @@ const Registration = () => {
     } else {
       const localData = {
         token: data.token,
+        email: data.data.email,
+        userRole: data.data.userRole,
       };
       setCurrentUser(localData);
       localStorage.setItem("userData", JSON.stringify(localData));

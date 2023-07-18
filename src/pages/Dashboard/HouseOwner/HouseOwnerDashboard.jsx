@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import Drawer from "../../../components/Drawer/Drawer";
-import Modal from "../../../components/Modal/Modal";
-import AddHouse from "./AddHouse";
 import TableView from "./TableView";
 
 const HouseOwnerDashboard = () => {
@@ -17,11 +15,7 @@ const HouseOwnerDashboard = () => {
 
   return (
     <div>
-      <Drawer
-        menu={menu}
-        content={<TableView />}
-        modal={<Modal title={"Add House"} content={<AddHouse />} />}
-      ></Drawer>
+      <Drawer menu={menu} content={<TableView />}></Drawer>
     </div>
   );
 };

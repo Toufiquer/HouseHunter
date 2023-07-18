@@ -38,8 +38,11 @@ const LogIn = () => {
       localStorage.setItem("userData", JSON.stringify({}));
       content = <DisplayCenter>{data.message}</DisplayCenter>;
     } else {
+      console.log(data);
       const localData = {
         token: data.token,
+        email: data.data.email,
+        userRole: data.data.userRole,
       };
       setCurrentUser(localData);
       localStorage.setItem("userData", JSON.stringify(localData));
