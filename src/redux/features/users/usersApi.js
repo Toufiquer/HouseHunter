@@ -77,9 +77,33 @@ export const usersApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    // for registration
     addUser: builder.mutation({
       query: (data) => ({
         url: `/users`,
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        // debugger;
+        try {
+          const query = await queryFulfilled;
+          // pessimistic cache update start
+          if (query?.data?.id) {
+            dispatch(
+              apiSlice.util.updateQueryData("getUsers", undefined, (draft) => {
+                draft.push(query.data);
+              })
+            );
+          }
+          // pessimistic cache update end
+        } catch {}
+      },
+    }),
+    // for login
+    addLogIn: builder.mutation({
+      query: (data) => ({
+        url: `/usersLogIn`,
         method: "POST",
         body: data,
       }),
@@ -107,4 +131,5 @@ export const {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useAddUserMutation,
+  useAddLogInMutation,
 } = usersApi;

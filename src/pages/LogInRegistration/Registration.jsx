@@ -7,7 +7,7 @@ import { AuthContext } from "../../layout/Main/Main";
 
 const Registration = () => {
   const [currentUser, setCurrentUser] = useContext(AuthContext);
-  // console.log(currentUser);
+
   const [addUser, { isSuccess, isLoading, isError, data }] =
     useAddUserMutation();
   const options = [
