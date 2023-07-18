@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const Drawer = ({ title, menu, content }) => {
+const Drawer = ({ title, menu, content, modal }) => {
   return (
     <div>
       <div className="drawer">
@@ -24,7 +24,11 @@ const Drawer = ({ title, menu, content }) => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">{title || "Dashboard"}</div>
+            <div className="flex-1 px-2 mx-2 ">
+              <div className="container mx-auto flex gap-2 items-center">
+                {title || "Dashboard"} <div className="ml-2">{modal}</div>
+              </div>
+            </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
