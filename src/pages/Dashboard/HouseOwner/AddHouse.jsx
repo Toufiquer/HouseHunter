@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import swal from "sweetalert";
 import { useAddHouseMutation } from "../../../redux/features/houses/housesApi";
 import Loading from "../../../components/Loading/Loading";
 import DisplayCenter from "../../../components/DisplayCenter/DisplayCenter";
+import { AuthContext } from "../../../layout/Main/Main";
 
 // check bd phone number
 function isValidBangladeshPhoneNumber(phoneNumber) {
@@ -10,10 +11,13 @@ function isValidBangladeshPhoneNumber(phoneNumber) {
   const regex = /^(01[3-9]\d{8}|\\+8801[3-9]\d{8})$/;
 
   // Check if the phone number matches the regular expression
-  return regex.test(phoneNumber);
+  // return regex.test(phoneNumber);
+  return true;
 }
 const AddHouse = () => {
   const [addHouse, { isSuccess, isLoading, isError }] = useAddHouseMutation();
+
+  const [currentUser, setCurrentUser] = useContext(AuthContext);
   const email = React.useRef();
   const password = React.useRef();
   const address = React.useRef();
@@ -31,21 +35,17 @@ const AddHouse = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkNumber = isValidBangladeshPhoneNumber(
-      description.current?.value
-    );
+    const checkNumber = isValidBangladeshPhoneNumber(phoneNumber);
     if (!checkNumber) {
       swal("Phone Number must be Bangladeshi");
     } else {
       if (
         email.current?.value &&
-        password.current?.value &&
         address.current?.value &&
         city.current?.value &&
         bedrooms.current?.value &&
         bathrooms.current?.value &&
         roomSize.current?.value &&
-        picture.current?.value &&
         availabilityDate.current?.value &&
         rentPerMonth.current?.value &&
         phoneNumber.current?.value &&
@@ -53,18 +53,20 @@ const AddHouse = () => {
       ) {
         const data = {
           email: email.current.value,
-          password: password.current.value,
           address: address.current.value,
           city: city.current.value,
           bedrooms: bedrooms.current.value,
           bathrooms: bathrooms.current.value,
           roomSize: roomSize.current.value,
-          picture: picture.current.value,
+          picture:
+            picture?.current?.value ||
+            "https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg",
           availabilityDate: availabilityDate.current.value,
           rentPerMonth: rentPerMonth.current.value,
           phoneNumber: phoneNumber.current.value,
           description: description.current.value,
         };
+        console.log(data);
         addHouse(data);
       }
     }
@@ -86,17 +88,9 @@ const AddHouse = () => {
           </label>
           <input
             type="email"
-            placeholder="Email"
+            value={currentUser.email || "Not Found"}
             ref={email}
-            className="input input-bordered input-primary w-[400px] md:w-[800px]"
-          />
-          <label className="label">
-            <span className="label-text">What is your Password?</span>
-          </label>
-          <input
-            type="password"
-            ref={password}
-            placeholder="Password"
+            readOnly
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
           />
           <label className="label">
@@ -148,6 +142,7 @@ const AddHouse = () => {
             <span className="label-text">Picture</span>
           </label>
           <input
+            readOnly
             type="file"
             ref={picture}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
