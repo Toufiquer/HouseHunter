@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Drawer from "../../../components/Drawer/Drawer";
 import Modal from "../../../components/Modal/Modal";
 import AddHouse from "./AddHouse";
+import TableView from "./TableView";
 
 const HouseOwnerDashboard = () => {
   const menu = (
@@ -16,7 +17,7 @@ const HouseOwnerDashboard = () => {
     <div>
       <Drawer
         menu={menu}
-        content={"content"}
+        content={<TableView />}
         modal={<Modal title={"Add House"} content={<AddHouse />} />}
       ></Drawer>
     </div>

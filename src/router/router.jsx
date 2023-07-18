@@ -4,6 +4,8 @@ import Main from "../layout/Main/Main";
 import NotFound from "../pages/NotFound/NotFound";
 import LogInRegistration from "../pages/LogInRegistration/LogInRegistration";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,22 @@ export const router = createBrowserRouter([
     element: (
       <Main>
         <Dashboard />
+      </Main>
+    ),
+  },
+  {
+    path: "/about",
+    element: (
+      <Main>
+        <About />
+      </Main>
+    ),
+  },
+  {
+    path: "/contact",
+    element: (
+      <Main>
+        <Contact />
       </Main>
     ),
   },
