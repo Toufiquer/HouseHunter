@@ -32,6 +32,14 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </footer>
+      <div className="footer footer-center p-4 bg-base-300 text-base-content">
+        <div>
+          <p>
+            Copyright &copy; {new Date().getFullYear()} - All right reserved
+            House Hunter Industries Ltd
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
