@@ -22,14 +22,19 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <a>Item 1</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a>Item 2</a>
+        <a to="/about">About</a>
       </li>
       <li>
-        <a>Item 3</a>
+        <Link to="/contact">Contact</Link>
       </li>
+      {currentUser.token && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
     </>
   );
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import swal from "sweetalert";
 import { useAddHouseMutation } from "../../../redux/features/houses/housesApi";
 import Loading from "../../../components/Loading/Loading";
@@ -14,7 +14,7 @@ function isValidBangladeshPhoneNumber(phoneNumber) {
   // return regex.test(phoneNumber);
   return true;
 }
-const AddHouse = () => {
+const UpdateHouse = () => {
   const [addHouse, { isSuccess, isLoading, isError }] = useAddHouseMutation();
 
   const [currentUser, setCurrentUser] = useContext(AuthContext);
@@ -29,6 +29,9 @@ const AddHouse = () => {
   const rentPerMonth = React.useRef();
   const phoneNumber = React.useRef();
   const description = React.useRef();
+  useEffect(() => {
+    rentPerMonth.current.value = 800;
+  }, []);
   if (isSuccess) {
     swal("House Add success");
   }
@@ -193,4 +196,4 @@ const AddHouse = () => {
   return <div className="container mx-auto w-full min-h-screen">{content}</div>;
 };
 
-export default AddHouse;
+export default UpdateHouse;

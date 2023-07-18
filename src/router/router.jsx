@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import AddHouse from "../pages/Dashboard/HouseOwner/AddHouse";
+import UpdateHouse from "../pages/Dashboard/HouseOwner/UpdateHouse";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ export const router = createBrowserRouter([
     element: (
       <Main>
         <AddHouse />
+      </Main>
+    ),
+  },
+  {
+    path: "/dashboard/update/:id",
+    element: (
+      <Main>
+        <UpdateHouse />
       </Main>
     ),
   },
