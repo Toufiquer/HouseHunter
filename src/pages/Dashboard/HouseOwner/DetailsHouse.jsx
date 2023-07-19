@@ -27,19 +27,7 @@ const DetailsHouse = () => {
     rentPerMonth: dow_rentPerMonth,
     roomSize: dow_roomSize,
   } = data?.data || {};
-  console.log(
-    dow_address,
-    dow_availabilityDate,
-    dow_bathrooms,
-    dow_bedrooms,
-    dow_city,
-    dow_description,
-    dow_email,
-    dow_phoneNumber,
-    dow_picture,
-    dow_rentPerMonth,
-    dow_roomSize
-  );
+
   const [currentUser, setCurrentUser] = useContext(AuthContext);
   const email = React.useRef();
   const address = React.useRef();

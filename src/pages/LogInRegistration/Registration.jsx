@@ -45,7 +45,6 @@ const Registration = () => {
         password: password.current.value,
         userRole: role,
       };
-      console.log(data);
       addUser(data);
     }
   };

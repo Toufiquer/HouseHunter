@@ -15,8 +15,6 @@ const LogIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("email:", email.current?.value);
-    console.log("password:", password.current?.value);
 
     if (email.current?.value && password.current?.value) {
       const data = {
@@ -38,7 +36,6 @@ const LogIn = () => {
       localStorage.setItem("userData", JSON.stringify({}));
       content = <DisplayCenter>{data.message}</DisplayCenter>;
     } else {
-      console.log(data);
       const localData = {
         token: data.token,
         email: data.data.email,
