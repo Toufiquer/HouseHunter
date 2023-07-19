@@ -2,7 +2,23 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 
 // eslint-disable-next-line react/prop-types
-const TableRow = ({ id = 0 }) => {
+const TableRow = ({ data }) => {
+  const {
+    _id,
+    address,
+    availabilityDate,
+    bathrooms,
+    bedrooms,
+    city,
+    description,
+    email,
+    phoneNumber,
+    picture,
+    rentPerMonth,
+    roomSize,
+  } = data || {};
+
+  console.log(data);
   const handleDelete = async () => {
     const willDelete = await swal({
       title: "Are you sure?",
@@ -30,31 +46,35 @@ const TableRow = ({ id = 0 }) => {
             </div>
           </div>
           <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
+            <div className="font-bold">{address}</div>
           </div>
         </div>
       </td>
       <td>
-        Zemlak, Daniel and Leannon
         <br />
-        <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span>
+        <span className="badge badge-ghost badge-sm">{description}</span>
       </td>
-      <td>Purple</td>
-      <th>
+      <td>{rentPerMonth}</td>
+      <td>{bathrooms}</td>
+      <td>{bedrooms}</td>
+      <th className="text-black">
         <button
-          onClick={() => handleDelete(id)}
+          onClick={() => handleDelete(_id)}
           className="btn btn-ghost btn-xs bg-red-500 hover:bg-red-600 mr-2"
         >
           Delete
         </button>
         <Link
-          to="update/:id"
-          className="btn btn-ghost btn-xs bg-blue-500 hover:bg-blue-600"
+          to={`update/${_id}`}
+          className="btn btn-ghost btn-xs bg-blue-500 hover:bg-blue-600 mr-2"
         >
           Update
+        </Link>
+        <Link
+          to={`details/${_id}`}
+          className="btn btn-ghost btn-xs bg-green-500 hover:bg-green-600"
+        >
+          Details
         </Link>
       </th>
     </tr>

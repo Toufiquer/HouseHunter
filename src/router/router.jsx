@@ -8,6 +8,7 @@ import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import AddHouse from "../pages/Dashboard/HouseOwner/AddHouse";
 import UpdateHouse from "../pages/Dashboard/HouseOwner/UpdateHouse";
+import DetailsHouse from "../pages/Dashboard/HouseOwner/DetailsHouse";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ export const router = createBrowserRouter([
     element: (
       <Main>
         <UpdateHouse />
+      </Main>
+    ),
+  },
+  {
+    path: "/dashboard/details/:id",
+    element: (
+      <Main>
+        <DetailsHouse />
       </Main>
     ),
   },
