@@ -24,7 +24,7 @@ export const housesApi = apiSlice.injectEndpoints({
         // optimistic cache update start
         const patchResult1 = dispatch(
           apiSlice.util.updateQueryData("getHouses", undefined, (draft) => {
-            const newValue = draft.map((curr) => {
+            const newValue = draft.data.map((curr) => {
               if (curr._id === arg.id) {
                 return { ...curr, ...arg.data };
               } else {
@@ -63,10 +63,10 @@ export const housesApi = apiSlice.injectEndpoints({
         // optimistic cache update start
         const patchResult1 = dispatch(
           apiSlice.util.updateQueryData("getHouses", undefined, (draft) => {
-            const index = draft.findIndex(
-              (i) => parseInt(i._id) === parseInt(arg)
+            const index = draft.data.findIndex(
+              (i) => (i._id) === (arg)
             );
-            draft.splice(index, 1);
+            draft.data.splice(index, 1);
           })
         );
         // optimistic cache update end
@@ -92,7 +92,7 @@ export const housesApi = apiSlice.injectEndpoints({
           if (query?.data?.id) {
             dispatch(
               apiSlice.util.updateQueryData("getHouses", undefined, (draft) => {
-                draft.push(query.data);
+                draft.data.push(query.data);
               })
             );
           }

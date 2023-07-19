@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { useDeleteHouseMutation } from "../../../redux/features/houses/housesApi";
+import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const TableRow = ({ data }) => {
@@ -17,8 +19,9 @@ const TableRow = ({ data }) => {
     rentPerMonth,
     roomSize,
   } = data || {};
+  const [deleteHouse, { isLoading, isError, error, isSuccess }] =
+    useDeleteHouseMutation();
 
-  console.log(data);
   const handleDelete = async () => {
     const willDelete = await swal({
       title: "Are you sure?",
@@ -26,7 +29,7 @@ const TableRow = ({ data }) => {
       icon: "warning",
       dangerMode: true,
     });
-    console.log(willDelete);
+    willDelete && deleteHouse(_id);
   };
   return (
     <tr>
