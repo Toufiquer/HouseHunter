@@ -7,12 +7,10 @@ import { AuthContext } from "../../../layout/Main/Main";
 
 // check bd phone number
 function isValidBangladeshPhoneNumber(phoneNumber) {
-  // The regular expression for a Bangladesh phone number
-  const regex = /^(01[3-9]\d{8}|\\+8801[3-9]\d{8})$/;
-
   // Check if the phone number matches the regular expression
-  // return regex.test(phoneNumber);
-  return true;
+  const result = phoneNumber.match("^(?:\\+88|88)?(01[3-9]\\d{8})$");
+  // it return null or array
+  return result?.length > 0;
 }
 const AddHouse = () => {
   const [addHouse, { isSuccess, isLoading, isError }] = useAddHouseMutation();
@@ -34,7 +32,7 @@ const AddHouse = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkNumber = isValidBangladeshPhoneNumber(phoneNumber);
+    const checkNumber = isValidBangladeshPhoneNumber(phoneNumber.current.value);
     if (!checkNumber) {
       swal("Phone Number must be Bangladeshi");
     } else {
@@ -65,7 +63,6 @@ const AddHouse = () => {
           phoneNumber: phoneNumber.current.value,
           description: description.current.value,
         };
-        console.log(data);
         addHouse(data);
       }
     }
@@ -97,6 +94,7 @@ const AddHouse = () => {
           </label>
           <input
             type="text"
+            required
             placeholder="Address"
             ref={address}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -106,6 +104,7 @@ const AddHouse = () => {
           </label>
           <input
             type="text"
+            required
             placeholder="City"
             ref={city}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -115,6 +114,7 @@ const AddHouse = () => {
           </label>
           <input
             type="number"
+            required
             placeholder="Bedrooms"
             ref={bedrooms}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -124,6 +124,7 @@ const AddHouse = () => {
           </label>
           <input
             type="number"
+            required
             placeholder="Bathrooms"
             ref={bathrooms}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -133,6 +134,7 @@ const AddHouse = () => {
           </label>
           <input
             type="text"
+            required
             placeholder="Room Size"
             ref={roomSize}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -151,6 +153,7 @@ const AddHouse = () => {
           </label>
           <input
             type="date"
+            required
             placeholder="Availability Date"
             ref={availabilityDate}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -160,6 +163,7 @@ const AddHouse = () => {
           </label>
           <input
             type="number"
+            required
             placeholder="Rent Per Month"
             ref={rentPerMonth}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
@@ -169,6 +173,7 @@ const AddHouse = () => {
           </label>
           <input
             type="tel"
+            required
             placeholder="Phone Number"
             ref={phoneNumber}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"

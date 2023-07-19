@@ -81,6 +81,7 @@ const Registration = () => {
           <input
             type="text"
             ref={name}
+            required
             placeholder="Name"
             className="input input-bordered input-primary w-[400px]"
           />{" "}
@@ -103,6 +104,7 @@ const Registration = () => {
           </label>
           <input
             type="text"
+            required
             ref={phone}
             placeholder="Phone"
             className="input input-bordered input-primary w-[400px]"
@@ -112,6 +114,7 @@ const Registration = () => {
           </label>
           <input
             type="email"
+            required
             ref={email}
             placeholder="Email"
             className="input input-bordered input-primary w-[400px]"
@@ -121,6 +124,7 @@ const Registration = () => {
           </label>
           <input
             type="password"
+            required
             ref={password}
             placeholder="Password"
             className="input input-bordered input-primary w-[400px]"
@@ -130,6 +134,7 @@ const Registration = () => {
           </label>
           <input
             type="password"
+            required
             ref={conPassword}
             placeholder="Password"
             className="input input-bordered input-primary w-[400px]"
