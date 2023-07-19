@@ -1,9 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import swal from "sweetalert";
-import { useAddHouseMutation } from "../../../redux/features/houses/housesApi";
+import {
+  useGetHouseQuery,
+  useUpdateHouseMutation,
+} from "../../../redux/features/houses/housesApi";
 import Loading from "../../../components/Loading/Loading";
 import DisplayCenter from "../../../components/DisplayCenter/DisplayCenter";
 import { AuthContext } from "../../../layout/Main/Main";
+import { Navigate, useParams } from "react-router";
 
 // check bd phone number
 function isValidBangladeshPhoneNumber(phoneNumber) {
@@ -15,8 +19,22 @@ function isValidBangladeshPhoneNumber(phoneNumber) {
   return true;
 }
 const UpdateHouse = () => {
-  const [addHouse, { isSuccess, isLoading, isError }] = useAddHouseMutation();
-
+  const [updateHouse, { isSuccess, isLoading, isError }] =
+    useUpdateHouseMutation();
+  const { id } = useParams();
+  const { data, isLoadingG, isErrorG } = useGetHouseQuery(id);
+  const {
+    address: dow_address,
+    availabilityDate: dow_availabilityDate,
+    bathrooms: dow_bathrooms,
+    bedrooms: dow_bedrooms,
+    city: dow_city,
+    description: dow_description,
+    email: dow_email,
+    phoneNumber: dow_phoneNumber,
+    rentPerMonth: dow_rentPerMonth,
+    roomSize: dow_roomSize,
+  } = data?.data || {};
   const [currentUser, setCurrentUser] = useContext(AuthContext);
   const email = React.useRef();
   const address = React.useRef();
@@ -30,10 +48,31 @@ const UpdateHouse = () => {
   const phoneNumber = React.useRef();
   const description = React.useRef();
   useEffect(() => {
-    rentPerMonth.current.value = 800;
-  }, []);
+    address.current.value = dow_address;
+    availabilityDate.current.value = dow_availabilityDate;
+    bathrooms.current.value = dow_bathrooms;
+    bedrooms.current.value = dow_bedrooms;
+    city.current.value = dow_city;
+    description.current.value = dow_description;
+    email.current.value = dow_email;
+    phoneNumber.current.value = dow_phoneNumber;
+    rentPerMonth.current.value = dow_rentPerMonth;
+    roomSize.current.value = dow_roomSize;
+  }, [
+    dow_address,
+    dow_availabilityDate,
+    dow_bathrooms,
+    dow_bedrooms,
+    dow_city,
+    dow_description,
+    dow_email,
+    dow_phoneNumber,
+    dow_rentPerMonth,
+    dow_roomSize,
+  ]);
   if (isSuccess) {
-    swal("House Add success");
+    swal("House Update success");
+    return <Navigate to="/dashboard" />;
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,8 +107,7 @@ const UpdateHouse = () => {
           phoneNumber: phoneNumber.current.value,
           description: description.current.value,
         };
-        console.log(data);
-        addHouse(data);
+        updateHouse({ id, data });
       }
     }
   };
@@ -187,6 +225,7 @@ const UpdateHouse = () => {
           <input
             type="submit"
             value="Submit"
+            disabled={isLoading}
             className="btn btn-outline btn-primary input input-bordered input-primary w-[400px] md:w-[800px]"
           />
         </form>

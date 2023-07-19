@@ -10,8 +10,8 @@ const TableView = () => {
 
   const [currentUser, setCurrentUser] = useContext(AuthContext);
   // decide what to render
-  const displayData = data.data
-    .filter((curr) => curr.email === currentUser.email)
+  const displayData = data?.data
+    ?.filter((curr) => curr.email === currentUser.email)
     .map((curr) => <TableRow key={curr._id} data={curr} />);
   let content;
   if (isLoading && !isError) {

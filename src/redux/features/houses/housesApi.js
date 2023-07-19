@@ -11,7 +11,7 @@ export const housesApi = apiSlice.injectEndpoints({
       query: () => `/houses`,
     }),
     getHouse: builder.query({
-      query: (email) => `/houses/${email}`,
+      query: (email) => `/house/${email}`,
     }),
     updateHouse: builder.mutation({
       query: ({ id, data }) => ({
