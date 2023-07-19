@@ -1,11 +1,18 @@
+import { useContext } from "react";
 import DisplayCenter from "../../../components/DisplayCenter/DisplayCenter";
 import Loading from "../../../components/Loading/Loading";
+import { AuthContext } from "../../../layout/Main/Main";
 import { useGetHousesQuery } from "../../../redux/features/houses/housesApi";
 import TableRow from "./TableRow";
 
 const TableView = () => {
   const { data, isLoading, isError } = useGetHousesQuery();
+
+  const [currentUser, setCurrentUser] = useContext(AuthContext);
   // decide what to render
+  const displayData = data.data
+    .filter((curr) => curr.email === currentUser.email)
+    .map((curr) => <TableRow key={curr._id} data={curr} />);
   let content;
   if (isLoading && !isError) {
     content = <Loading />;
@@ -34,11 +41,7 @@ const TableView = () => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                {data.data.map((curr) => (
-                  <TableRow key={curr._id} data={curr} />
-                ))}
-              </tbody>
+              <tbody>{displayData}</tbody>
             </table>
           </div>
         </div>

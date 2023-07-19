@@ -32,47 +32,7 @@ const DetailsHouse = () => {
   useEffect(() => {
     rentPerMonth.current.value = 800;
   }, []);
-  if (isSuccess) {
-    swal("House Add success");
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const checkNumber = isValidBangladeshPhoneNumber(phoneNumber);
-    if (!checkNumber) {
-      swal("Phone Number must be Bangladeshi");
-    } else {
-      if (
-        email.current?.value &&
-        address.current?.value &&
-        city.current?.value &&
-        bedrooms.current?.value &&
-        bathrooms.current?.value &&
-        roomSize.current?.value &&
-        availabilityDate.current?.value &&
-        rentPerMonth.current?.value &&
-        phoneNumber.current?.value &&
-        description.current?.value
-      ) {
-        const data = {
-          email: email.current.value,
-          address: address.current.value,
-          city: city.current.value,
-          bedrooms: bedrooms.current.value,
-          bathrooms: bathrooms.current.value,
-          roomSize: roomSize.current.value,
-          picture:
-            picture?.current?.value ||
-            "https://blog.technavio.org/wp-content/uploads/2018/12/Online-House-Rental-Sites.jpg",
-          availabilityDate: availabilityDate.current.value,
-          rentPerMonth: rentPerMonth.current.value,
-          phoneNumber: phoneNumber.current.value,
-          description: description.current.value,
-        };
-        console.log(data);
-        addHouse(data);
-      }
-    }
-  };
+
 
   // decide what to render
   let content;
@@ -84,7 +44,7 @@ const DetailsHouse = () => {
     content = (
       <div className="flex items-center justify-center mt-4">
         {" "}
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-2" onSubmit={handleSubmit}>
           <label className="label">
             <span className="label-text">What is your Email?</span>
           </label>
@@ -184,12 +144,7 @@ const DetailsHouse = () => {
             ref={description}
             className="input input-bordered input-primary w-[400px] md:w-[800px]"
           />
-          <input
-            type="submit"
-            value="Submit"
-            className="btn btn-outline btn-primary input input-bordered input-primary w-[400px] md:w-[800px]"
-          />
-        </form>
+        </div>
       </div>
     );
   }
